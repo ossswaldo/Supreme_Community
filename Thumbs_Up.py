@@ -37,6 +37,7 @@ class ChangeTheMarket():
     def openUpBrowser(self):
         print(datetime.now(),'Supreme Community Script Initiated -')
         self.driver.get('https://www.supremecommunity.com/season/fall-winter2019/droplist/2019-08-22/')
+        self.driver.delete_all_cookies()
         print(datetime.now(),'Openeing supremecommunity.com')
 
     def cleanUpBrowser(self):
