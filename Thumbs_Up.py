@@ -25,14 +25,49 @@ class ChangeTheMarket():
         options.add_argument('start-maximized')
         options.add_argument('disable-infobars')
         options.add_argument('ignore-certificate-errors')
-        options.add_argument('incognito')
+        #options.add_argument('incognito')
         #options.add_argument('headless')
         self.driver = webdriver.Chrome(chrome_options=options, executable_path=r'/Users/BigO/Documents/CODE/Supreme_Community/chromedriver')
 
     def execute(self):
         self.setupselenium()
-        self.openUpBrowser()
-        #self.cleanUpBrowser()
+        self.discord()
+        self.cleanUpBrowser()
+
+
+    def discord(self):
+        self.driver.get('https://discordapp.com/channels/@me/616376939577606204')
+
+        print(datetime.now(),'Discord Launched, Searching For Fields.')
+        inputElement = self.driver.find_element_by_xpath("//*[@type='email']")
+        inputElement.send_keys('arguetaoswaldo@yahoo.com')
+        print(datetime.now(),'Typing in email bar')
+
+        inputElement = self.driver.find_element_by_xpath("//*[@type='password']")
+        inputElement.send_keys('playa0976')
+        print(datetime.now(),'Typing in password bar')
+
+
+        wait = WebDriverWait(self.driver, 10)
+        on = wait.until(EC.visibility_of_element_located((By.XPATH,"//*[@type='submit']")))
+        ActionChains(self.driver).move_to_element(on).click().perform()
+
+        time.sleep(3)
+        chat = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@href='/channels/@me/616376939577606204']")))
+        ActionChains(self.driver).move_to_element(chat).click().perform()
+
+        counter = 0
+        while counter<10000:
+            inputElement = self.driver.find_element_by_xpath("//*[@placeholder='Message gman, ckfx']")
+            inputElement.send_keys('@ckfx what are you doing')
+            inputElement.send_keys('\n')
+            print(datetime.now(),'Typing in chat bar')
+            counter+= 1
+
+            if counter % 10 == 0:
+                time.sleep(2)
+
+
 
     def openUpBrowser(self):
         print(datetime.now(),'Supreme Community Script Initiated -')
