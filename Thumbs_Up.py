@@ -36,7 +36,7 @@ class ChangeTheMarket():
 
 
     def discord(self):
-        self.driver.get('https://discordapp.com/channels/@me/616376939577606204')
+        self.driver.get('https://discordapp.com/channels/')
 
         print(datetime.now(),'Discord Launched, Searching For Fields.')
         inputElement = self.driver.find_element_by_xpath("//*[@type='email']")
@@ -53,15 +53,15 @@ class ChangeTheMarket():
         ActionChains(self.driver).move_to_element(on).click().perform()
 
         time.sleep(3)
-        chat = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@href='/channels/@me/616376939577606204']")))
+        chat = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[contains(@aria-label,'HeraMemon')]")))
         ActionChains(self.driver).move_to_element(chat).click().perform()
 
         counter = 0
-        while counter<10000:
-            inputElement = self.driver.find_element_by_xpath("//*[@placeholder='Message gman, ckfx']")
-            inputElement.send_keys('@ckfx what are you doing')
+        while counter<10:
+            inputElement = self.driver.find_element_by_xpath("//*[@placeholder='Message @HeraMemon']")
+            inputElement.send_keys('@HeraMemon whats good.')
             inputElement.send_keys('\n')
-            print(datetime.now(),'Typing in chat bar')
+            print(datetime.now(),'Typing in chat bar',counter,"times" )
             counter+= 1
 
             if counter % 10 == 0:
